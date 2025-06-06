@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}LOG IN{% endblock %}</h1>
+    <div style="width: 50%; padding: 10px; background-color: #da7096; margin: 20px">
+        <form action="/login" method="POST">
+            <input name="username" placeholder="Username">
+            <input name="password" type ="password" placeholder="Password">
+            <button type="submit">Log in</button>
+        </form>  
+        <p style="font-size: 24px">{{ t }}</p>
+    </div>
+    <h2> New user? </h2>
+    <nav>
+        <a href=" {{ url_for('show_create_account')}}">Create new account</a>
+    </nav>
+{% endblock %}

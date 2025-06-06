@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Workout Planner{% endblock %}</title>
+    <style>
+        nav a {
+            color: #f592a7;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('login')}}">Login</a>
+        <a href=" {{ url_for('about')}}">About</a>
+        <a href=" {{ url_for('test')}}">Test</a>
+        <a href=" {{ url_for('add_exercise')}}">Exercises</a>
+        <a href=" {{ url_for('get_workouts')}}">Workouts</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

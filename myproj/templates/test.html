@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Comments {% endblock %}</h1>
+    <div style="width: 50%; margin: auto">
+        {% for t in test %}
+        <div style="padding: 10px; 
+            background-color: {{loop.cycle('#da7096', '#e997b2') }};
+            margin: 20px">
+            <p>#{{ loop.index }}</p>
+            <p style="font-size: 24px">{{ t }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

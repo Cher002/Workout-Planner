@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}ADD EXERCISE{% endblock %}</h1>
+    <div style="width: 50%; padding: 10px; background-color: #da7096; margin: 20px">
+        <form action="/add_exercise" method="POST">
+            <input name="exercise" placeholder="exercise">
+            <input name="reps" placeholder="reps">
+            <input name="sets" placeholder="sets">
+            <input name="weight" placeholder="weight">
+            <button type="submit">Add</button>
+        </form>  
+        <p style="font-size: 24px">{{ t }}</p>
+    </div>
+{% endblock %}
