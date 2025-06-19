@@ -15,33 +15,31 @@ class User(db.Model):
     password = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100))
 
-    #workouts = db.relationship('Workout', backref='user', lazy=True)
-    #weight_log = db.relationship('weight_log', backref='user', lazy=True)
-
-
+#workout session: exleg day 6/16
 class Workout(db.Model):
     id = db.Column('workout_id', db.Integer, primary_key = True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'))#foreign
     name = db.Column(db.String(50), nullable=False)
-    date = db.Column(db.String(50), nullable=False)
-    time = db.Column(db.String(50), nullable=False)
+    datetime = db.DateTime
 
-    #exercises = db.relationship('Exercise', backref='workout', lazy=True)
+class Exercise(db.Model): #master exercise list
+    id = db.Column('exercise_id', db.Integer, primary_key = True, autoincrement=True)
+    user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'))#foreign
+    exercise = db.Column(db.String(50), nullable=False)
 
-class Exercise(db.Model):
-
+#tracking whats done in the workout/what happened within it
+class WorkoutExercise(db.Model):
     id = db.Column('exercise_id', db.Integer, primary_key = True, autoincrement=True)
     workout_id = db.Column('workout_id', db.Integer, db.ForeignKey('workout.workout_id'))
-    exercise = db.Column(db.String(50), nullable=False)
+    exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.exercise_id'))
     reps = db.Column(db.Integer(), nullable=False)
     sets = db.Column(db.Integer(), nullable=False)
     weight = db.Column(db.Integer(), nullable=False)
-
 
 #class Time_log():
 
 class Weight_log(db.Model): 
     id = db.Column('weight_id', db.Integer, primary_key = True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'))#foreign
-    date = db.Column(db.String(50), nullable=False)
+    date = db.Date
     weight = db.Column(db.Integer(), nullable=False)
