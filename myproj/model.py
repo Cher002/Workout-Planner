@@ -13,14 +13,14 @@ class User(db.Model):
     id = db.Column('user_id', db.Integer, primary_key = True)
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(100))
+    email = db.Column(db.String(100), nullable=True)
 
 #workout session: exleg day 6/16
 class Workout(db.Model):
     id = db.Column('workout_id', db.Integer, primary_key = True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.user_id'))#foreign
     name = db.Column(db.String(50), nullable=False)
-    datetime = db.DateTime
+    datetime = db.Column(db.DateTime, nullable=False)
 
 class Exercise(db.Model): #master exercise list
     id = db.Column('exercise_id', db.Integer, primary_key = True, autoincrement=True)
@@ -29,7 +29,7 @@ class Exercise(db.Model): #master exercise list
 
 #tracking whats done in the workout/what happened within it
 class WorkoutExercise(db.Model):
-    id = db.Column('exercise_id', db.Integer, primary_key = True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     workout_id = db.Column('workout_id', db.Integer, db.ForeignKey('workout.workout_id'))
     exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.exercise_id'))
     reps = db.Column(db.Integer(), nullable=False)

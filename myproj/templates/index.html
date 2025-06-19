@@ -1,4 +1,6 @@
-<!--main login page first -->
+<!--main login page first 
+Jinja2template
+-->
 
 {% extends 'base.html' %}
 
@@ -6,6 +8,16 @@
 {% block title %}My Workout Planner{% endblock %}
 
 {% block content %}
-    <h1>Hello user!</h1>
-    <p>{{ utc_dt }}</p>
+
+    {% if user %}
+
+        <h1>Hello {{ user.username }}!</h1>
+        <p>{{ utc_dt }}</p>
+
+    {% else %}
+
+        <h1>Welcome!</h1>
+        <p>{{ utc_dt }}</p>
+    {% endif %}
+
 {% endblock %}

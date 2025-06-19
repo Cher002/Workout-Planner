@@ -1,0 +1,23 @@
+<!-- make workouts, display, exercises, choose exercises, weight, rep,      -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Workouts{% endblock %}</h1>
+    <div style="width: 50%; padding: 10px; background-color: #da7096; margin: 20px">
+
+        <form action="/get_exercise" method="post">
+            {% for e in exercises %}
+                <input type="checkbox" name="selected_exercises" value="{{ e.id }}"> {{ e.exercise }}<br>
+                <input name="reps_{{ e.id }}" placeholder="reps">
+                <input name="sets{{ e.id }}" placeholder = "sets">
+                <input name="weight{{ e.id }}" placeholder = "weight">
+            {% endfor %}
+            <input name ="workout_name" placeholder ="legday">
+            <input type ="submit" value="Create workout">
+        </form>  
+
+
+        <p style="font-size: 24px">{{ t }}</p>
+    </div>
+{% endblock %}
